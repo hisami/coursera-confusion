@@ -4,7 +4,7 @@ import {Card, CardImg, CardText, CardBody, CardTitle} from 'reactstrap'
 
 class DishDetail extends Component {
     render() {
-        const dish = this.props.selectedDish
+        const dish = this.props.dish
         if (dish) {
             return (
                 <Card>
