@@ -6,12 +6,17 @@ import Footer from './Footer'
 import Home from './Home'
 import {Switch, Route, Redirect, withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
+import {addComment} from "../redux/ActionCreator";
 
 const mapStateToProps = state => {
     return {
         dishes: state.dishes,
     }
 }
+
+const mapDispatchToProps = (dispatch) => ({
+    addComment: (name) => dispatch(addComment(name))
+})
 
 class Main extends Component {
     constructor(props) {
@@ -30,7 +35,7 @@ class Main extends Component {
                 <Header/>
                 <Switch>
                     <Route path="/home" component={HomePage}/>
-                    <Route exact path="/menu" component={() => <Menu dishes={this.props.dishes}/>}/>
+                    <Route exact path="/menu" component={() => <Menu dishes={this.props.dishes} addComment={this.props.addComment}/>}/>
                     <Redirect to="/home"/>
                 </Switch>
                 <Footer/>
@@ -39,4 +44,4 @@ class Main extends Component {
     }
 }
 
-export default connect(mapStateToProps)(Main);
+export default connect(mapStateToProps, mapDispatchToProps)(Main);
